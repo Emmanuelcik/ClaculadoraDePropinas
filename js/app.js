@@ -34,6 +34,8 @@ function saveClient() {
     //Mostrar las secciones
     mostrarSecciones();
     
+    //Obtener platillos de la API de JSON-SERVER
+    obtenerPlatillos();
 }
 
 function mostrarSecciones(){
@@ -42,6 +44,16 @@ function mostrarSecciones(){
         seccion.classList.remove("d-none");
     })
 }
+
+function obtenerPlatillos(){
+    const url = "http://localhost:4000/platillos";
+
+    fetch(url)
+        .then(res => res.json() )
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
+
 
 function imprimirAlerta(mensaje){
 
