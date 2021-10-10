@@ -30,7 +30,17 @@ function saveClient() {
     const modalBoot = bootstrap.Modal.getInstance(modalform);
 
     modalBoot.hide();
+
+    //Mostrar las secciones
+    mostrarSecciones();
     
+}
+
+function mostrarSecciones(){
+    const seccionesOcultas = document.querySelectorAll(".d-none");
+    seccionesOcultas.forEach( seccion =>{
+        seccion.classList.remove("d-none");
+    })
 }
 
 function imprimirAlerta(mensaje){
