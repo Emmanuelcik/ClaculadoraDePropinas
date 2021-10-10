@@ -50,9 +50,24 @@ function obtenerPlatillos(){
 
     fetch(url)
         .then(res => res.json() )
-        .then(res => console.log(res))
+        .then(res => mostrarPlatillos(res))
         .catch(err => console.log(err))
-    }
+}
+
+function mostrarPlatillos(platillos){
+    const contenido = document.querySelector(".contenido");
+    platillos.forEach( platillo =>{
+        const row = document.createElement("div");
+        row.classList.add("row");
+        
+        const nombre = document.createElement("div");
+        nombre.classList.add("col-md-4");
+        nombre.textContent = platillo.nombre;
+
+        row.append(nombre);
+        contenido.appendChild(row);
+    })
+}
 
 
 function imprimirAlerta(mensaje){
