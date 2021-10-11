@@ -105,7 +105,14 @@ function mostrarPlatillos(platillos){
 }
 
 function agregarPlatillo(producto){
-    console.log(producto);
+    //Extraer el arreglo actual
+    let {pedido} = cliente;
+    //Revisar que la cantidad sea mayor a 0
+    if(producto.cantidad > 0 ){
+        cliente.pedido = [...pedido, producto];
+    }else {
+    }
+    console.log(cliente.pedido)
 }
 
 function imprimirAlerta(mensaje){
