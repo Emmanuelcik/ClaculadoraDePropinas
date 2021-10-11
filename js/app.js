@@ -109,7 +109,22 @@ function agregarPlatillo(producto){
     let {pedido} = cliente;
     //Revisar que la cantidad sea mayor a 0
     if(producto.cantidad > 0 ){
-        cliente.pedido = [...pedido, producto];
+
+        //Comprueba si el elemento ya existe en el array
+        if( pedido.some(articulo => articulo.id === producto.id)){
+            //El articulo ya existe, Actualizar la cantidad
+            const pedidoActualizado = pedido.map( articulo => {
+                if( articulo.id === producto.id){
+                    articulo.cantidad = producto.cantidad
+                }
+                return articulo;
+            });
+            // Se asigna el nuevo array al cliente.pedido
+            cliente.pedido = [...pedidoActualizado];
+        }else {
+            //El articulo no existe, entonces lo agregamos al array de pedido
+            cliente.pedido = [...pedido, producto];
+        }
     }else {
     }
     console.log(cliente.pedido)
