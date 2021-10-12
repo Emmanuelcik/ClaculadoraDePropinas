@@ -61,7 +61,9 @@ function obtenerPlatillos(){
 }
 
 function mostrarPlatillos(platillos){
+
     const contenido = document.querySelector(".contenido");
+
     platillos.forEach( platillo =>{
         const row = document.createElement("div");
         row.classList.add("row", "py-3", "border-top");
@@ -87,10 +89,10 @@ function mostrarPlatillos(platillos){
         inputCantidad.classList.add("form-control");
 
         //Funcion que detecta la cantidad y el platillo que se esta agregando
-            inputCantidad.onchange = function () {
-                const cantidad = parseInt(inputCantidad.value);
-                agregarPlatillo({...platillo, cantidad});
-            }
+        inputCantidad.onchange = function () {
+            const cantidad = parseInt(inputCantidad.value);
+            agregarPlatillo({...platillo, cantidad});
+        }
 
         const agregar = document.createElement("div");
         agregar.classList.add("col-md-2");
@@ -126,8 +128,12 @@ function agregarPlatillo(producto){
             cliente.pedido = [...pedido, producto];
         }
     }else {
+        //Eliminar elementos cuando la cantidad sea 0
+        const resultado = pedido.filter( articulo => articulo.id !== producto.id);
+        cliente.pedido = [...resultado]
+        console.log(resultado);
     }
-    console.log(cliente.pedido)
+    
 }
 
 function imprimirAlerta(mensaje){
