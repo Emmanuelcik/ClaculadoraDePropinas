@@ -206,16 +206,27 @@ function actualizarResumen(){
  
         const precioValor = document.createElement("span");
         precioValor.classList.add("fw-normal");
-        precioValor.textContent = "$", precio;
+        precioValor.textContent = `$${precio}`;
+
+         //Agregar el subtotal
+         const subtotalEl = document.createElement("p");
+         subtotalEl.classList.add("fw-bold");
+         subtotalEl.textContent = "subtotal: ";
+  
+         const subtotalValor = document.createElement("span");
+         subtotalValor.classList.add("fw-normal");
+         subtotalValor.textContent = calcularSubtotal(precio, cantidad);
  
         //Agregar span a su li
         cantidadEl.append(cantidadValor);
         precioEl.append(precioValor);
+        subtotalEl.append(subtotalValor);
 
         //Agregar elementos al LI
         lista.appendChild(nombreEl);
         lista.appendChild(cantidadEl);
         lista.appendChild(precioEl);
+        lista.appendChild(subtotalEl)
 
         //Agregar lista al grupo principal 
         group.appendChild(lista)
@@ -227,6 +238,10 @@ function actualizarResumen(){
     resumen.appendChild(group);
 
     contenido.appendChild(resumen);
+}
+
+function calcularSubtotal(precio, cantidad){
+    return `$ ${precio * cantidad}`;
 }
 
 function imprimirAlerta(mensaje){
