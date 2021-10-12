@@ -149,7 +149,7 @@ function actualizarResumen(){
     const contenido = document.querySelector("#resumen .contenido");
 
     const resumen = document.createElement("div");
-    resumen.classList.add("col-md-6", "card", "py-5", "px-3", "shadow");
+    resumen.classList.add("col-md-6", "card", "py-3", "px-3", "shadow");
 
     //Agregar mesa
     const mesa = document.createElement("p");
@@ -246,12 +246,15 @@ function actualizarResumen(){
         group.appendChild(lista)
     })
     
+    resumen.appendChild(heading);
     resumen.appendChild(mesa);
     resumen.appendChild(hora);
-    resumen.appendChild(heading);
     resumen.appendChild(group);
 
     contenido.appendChild(resumen);
+
+    //Mostrar el formulario de propinas
+    formularioPropina();
 }
 
 function calcularSubtotal(precio, cantidad){
@@ -290,6 +293,26 @@ function pedidoVacio(){
 
     contenido.appendChild(pedidoVacio);
 }
+
+function formularioPropina () {
+    const contenido = document.querySelector("#resumen .contenido");
+
+    const form = document.createElement("div");
+    form.classList.add("col-md-6", "formulario");
+
+    const divForm = document.createElement("div");
+    divForm.classList.add("card", "py-3", "px-3", "shadow")
+
+    const heading = document.createElement("h3");
+    heading.classList.add("my-4", "text-center");
+    heading.textContent = "Propina:"
+
+    divForm.append(heading);
+    form.appendChild(divForm)
+
+    contenido.appendChild(form)
+}
+
 function imprimirAlerta(mensaje){
 
     const verify = document.querySelector(".invalid-feedback");
