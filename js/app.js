@@ -131,7 +131,7 @@ function agregarPlatillo(producto){
         //Eliminar elementos cuando la cantidad sea 0
         const resultado = pedido.filter( articulo => articulo.id !== producto.id);
         cliente.pedido = [...resultado]
-        console.log(resultado);
+        // console.log(resultado);
     }
     
     //Limpiar HTML previo
@@ -208,15 +208,24 @@ function actualizarResumen(){
         precioValor.classList.add("fw-normal");
         precioValor.textContent = `$${precio}`;
 
-         //Agregar el subtotal
-         const subtotalEl = document.createElement("p");
-         subtotalEl.classList.add("fw-bold");
-         subtotalEl.textContent = "subtotal: ";
+        //Agregar el subtotal
+        const subtotalEl = document.createElement("p");
+        subtotalEl.classList.add("fw-bold");
+        subtotalEl.textContent = "subtotal: ";
   
-         const subtotalValor = document.createElement("span");
-         subtotalValor.classList.add("fw-normal");
-         subtotalValor.textContent = calcularSubtotal(precio, cantidad);
- 
+        const subtotalValor = document.createElement("span");
+        subtotalValor.classList.add("fw-normal");
+        subtotalValor.textContent = calcularSubtotal(precio, cantidad);
+
+        //Boton para eliminar
+        const botonEliminar = document.createElement("button");
+        botonEliminar.classList.add("btn", "btn-danger");
+        botonEliminar.textContent = "Eliminar del Pedido";
+        
+        //Funcion para eliminar del pedido
+        botonEliminar.onclick = function() {
+            eliminarProducto(id);
+        }
         //Agregar span a su li
         cantidadEl.append(cantidadValor);
         precioEl.append(precioValor);
@@ -227,6 +236,7 @@ function actualizarResumen(){
         lista.appendChild(cantidadEl);
         lista.appendChild(precioEl);
         lista.appendChild(subtotalEl)
+        lista.appendChild(botonEliminar)
 
         //Agregar lista al grupo principal 
         group.appendChild(lista)
@@ -244,6 +254,20 @@ function calcularSubtotal(precio, cantidad){
     return `$ ${precio * cantidad}`;
 }
 
+function eliminarProducto(id){
+    
+    const {pedido} = cliente;
+    //Eliminar elementos cuando la cantidad sea 0
+    const resultado = pedido.filter( articulo => articulo.id !== id);
+    cliente.pedido = [...resultado];
+
+    //Limpiar HTML previo
+    limpiarHTML();
+
+    //Mostrar el resumen de consumo
+    actualizarResumen();
+
+}
 function imprimirAlerta(mensaje){
 
     const verify = document.querySelector(".invalid-feedback");
