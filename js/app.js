@@ -307,10 +307,72 @@ function formularioPropina () {
     heading.classList.add("my-4", "text-center");
     heading.textContent = "Propina:"
 
-    divForm.append(heading);
-    form.appendChild(divForm)
+    //Agregar raido button 10%
+    const radio10 = document.createElement("input");
+    radio10.type = "radio";
+    radio10.name = "propina"
+    radio10.value = "10%"
+    radio10.classList.add("form-check-input");
 
-    contenido.appendChild(form)
+    const radio10Label = document.createElement("label");
+    radio10Label.textContent = "10%";
+    radio10Label.classList.add("form-check-label");
+
+    const radio10Div = document.createElement("div");
+    radio10Div.classList.add("form-check");
+
+    radio10Div.appendChild(radio10);
+    radio10Div.appendChild(radio10Label);
+
+    //Agregar raido button 25%
+    const radio20 = document.createElement("input");
+    radio20.type = "radio";
+    radio20.name = "propina"
+    radio20.value = "25%"
+    radio20.classList.add("form-check-input");
+
+    const radio20Label = document.createElement("label");
+    radio20Label.textContent = "25%";
+    radio20Label.classList.add("form-check-label");
+
+    const radio20Div = document.createElement("div");
+    radio20Div.classList.add("form-check");
+
+    //Agregar raido button 50%
+    const radio50 = document.createElement("input");
+    radio50.type = "radio";
+    radio50.name = "propina"
+    radio50.value = "50%"
+    radio50.classList.add("form-check-input");
+
+    const radio50Label = document.createElement("label");
+    radio50Label.textContent = "50%";
+    radio50Label.classList.add("form-check-label");
+
+    const radio50Div = document.createElement("div");
+    radio50Div.classList.add("form-check");
+
+
+
+    
+    radio10Div.appendChild(radio20);
+    radio20Div.appendChild(radio10);
+    radio50Div.appendChild(radio50);
+
+    radio10Div.appendChild(radio10Label);
+    radio20Div.appendChild(radio20Label);
+    radio50Div.appendChild(radio50Label);
+    
+
+    //Agregar al div principal
+    divForm.append(heading);
+    divForm.appendChild(radio10Div);
+    divForm.appendChild(radio20Div);
+    divForm.appendChild(radio50Div);
+
+    form.appendChild(divForm);
+
+    contenido.appendChild(form);
 }
 
 function imprimirAlerta(mensaje){
